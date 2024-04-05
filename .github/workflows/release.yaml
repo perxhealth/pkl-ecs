@@ -1,0 +1,40 @@
+name: 🌈 Create Release
+
+on:
+  push:
+    branches:
+      - canon
+
+jobs:
+  publish:
+    name: 🐳 Release Package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve versions
+        uses: perxhealth/tool-versions-action@v1
+        id: versions
+
+      - name: Node setup
+        uses: perxhealth/setup-pnpm-action@v3
+        with:
+          node-version: ${{ steps.versions.outputs.nodejs_version }}
+          pnpm-version: ${{ steps.versions.outputs.pnpm_version }}
+          github-packages-token: ${{ secrets.GITHUB_TOKEN }}
+          install-deps: true
+
+      - name: Setup pkl
+        uses: pkl-community/setup-pkl@v0
+        with:
+          pkl-version: ${{ steps.versions.outputs.pkl_version }}
+
+      - name: Release
+        run: pnpm semantic-release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

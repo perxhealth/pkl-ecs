@@ -1,0 +1,8 @@
+amends "pkl:Project"
+
+package {
+  name = "pkl-ecs"
+  baseUri = "package://github.com/perxhealth/\(name)"
+  version = read("env:VERSION")
+  packageZipUrl = "https://github.com/perxhealth/\(name)/releases/download/v\(version)/\(name)@\(version).zip"
+}

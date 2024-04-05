@@ -1,0 +1,10 @@
+---
+branches:
+  - canon
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - - "@semantic-release/exec"
+    - publishCmd: VERSION=${nextRelease.version} pkl project package --output-path ".out/%{name}/"
+  - - "@semantic-release/github"
+    - assets:
+        - path: .out/pkl-ecs/*

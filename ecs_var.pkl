@@ -1,0 +1,20 @@
+@ModuleInfo { minPklVersion = "0.25.1" }
+module com.perxhealth.ecs.var
+
+import "task_definition.pkl"
+
+class StaticVar {
+  hidden _value: String
+  property: task_definition.Property = new {
+    value = _value
+  }
+}
+
+class SecretVar {
+  hidden _valueFrom: String
+  option: task_definition.SecretOption = new {
+    valueFrom = _valueFrom
+  }
+}
+
+typealias AnyVar = StaticVar | SecretVar

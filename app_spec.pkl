@@ -1,0 +1,24 @@
+@ModuleInfo { minPklVersion = "0.25.1" }
+module com.perxhealth.ecs.app_spec
+
+version: Int
+Resources: Listing<Resource>
+
+class Resource {
+  TargetService: TargetService
+}
+
+class TargetService {
+  Type: "AWS::ECS::Service"
+  Properties: Properties
+}
+
+class Properties {
+  TaskDefinition: String
+  LoadBalancerInfo: LoadBalancerInfo
+}
+
+class LoadBalancerInfo {
+  ContainerName: String
+  ContainerPort: Int
+}

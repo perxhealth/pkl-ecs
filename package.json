@@ -1,0 +1,12 @@
+{
+  "name": "pkl-ecs",
+  "version": "0.0.0-development",
+  "scripts": {
+    "release": "semantic-release"
+  },
+  "dependencies": {
+    "semantic-release": "^23.0.7",
+    "@semantic-release/github": "^10.0.2",
+    "@semantic-release/exec": "^6.0.3"
+  }
+}
